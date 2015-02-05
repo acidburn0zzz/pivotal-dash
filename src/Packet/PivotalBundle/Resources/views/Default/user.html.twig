@@ -1,0 +1,16 @@
+<div class="user content" id="panel{{ user.initials }}">
+	{% for projectid,project in user.projects %}
+		{% if loop.first %}
+			<h2><a href="#{{ user.initials }}">{{ user.name }} ({{ user.initials }})</a> <span class="points">points: {{ user.points }}, tasks: {{ user.tasks }}</span></h2>
+		{% endif %}
+
+		<h3>{{ project.name }} <span class="points">points: {{ project.points }}, tasks: {{ project.tasks }}</span></h3>
+		<h3><span class="iteration">Viewing Iteration: {{ project.iteration.start|date("M d, Y")  }} - {{ project.iteration.finish|date("M d, Y")  }}</span></h3>
+		<table class="stories" style="border: solid 1px #ccc;">
+			<tr><th>&nbsp;</th><th>type</th><th>status</th><th>requester</th><th>addtl owner(s)</th><th>name</th><th>label(s)</th></tr>
+			{% for story in project.iteration.stories %}
+				{{ include('PacketPivotalBundle:Default:story.html.twig', { 'story': story }) }}
+			{% endfor %}
+		</table>
+	{% endfor %}
+</div>

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<a href="/team">(view team)</a>
+<div id="projects">
+<ul class="tabs" id="navTabs" data-tab>
+{% for id,project in projects %}
+	<li class="tab-title{% if current and current == project.id %} active{% elseif not current and loop.first %} active{% endif %}"><a id="{{ project.id }}" href="#panel{{ project.id }}">{{ project.name }}</a></li>
+{% endfor %}
+</ul>
+
+<div class="tabs-content">
+	<div class="content active" id="tabContent">
+		<img src="/assets/img/throbber.gif" />
+	</div>
+</div>
+
+</div><!-- end #team -->
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+	$(function() {
+		$('#navTabs a').click(function (event, data) {
+			$('#tabContent').html('<img src="/assets/img/throbber.gif" />');
+			$('#tabContent').load('/project/' + this.id +'?offset={{ offset }}');
+		});
+		$('#tabContent').load('/project/{% if current %}{{ current }}{% else %}{{ projects|first.id }}{% endif %}?offset={{ offset }}');
+	});
+</script>
+{% endblock %}

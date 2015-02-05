@@ -1,0 +1,43 @@
+.story {
+	margin-left: 10px;
+}
+.user {
+	margin-top: 10px;
+}
+span.points, span.velocity, span.iteration {
+	font-size: .8em;
+	margin-left: 1em;
+	color: #888;
+}
+
+#team, #projects {
+	padding: 30px;
+}
+
+.stories i.fi-alert,
+.stories i.fi-battery-empty {
+	color: #C00;
+}
+.stories i.fi-trophy,
+.stories i.fi-crown,
+.stories i.fi-star {
+	color: #D7DF01;
+}
+.stories i.fi-skull {
+	color: #21610B;
+}
+.stories i.fi-battery-full {
+	color: #04B404;
+}
+.stories i.fi-trees {
+	color: #0404B4; 
+}
+.stories i.fi-trophy,
+.stories i.fi-crown,
+.stories i.fi-clipboard-notes {
+	font-size: 1.3em;
+}
+.stories i.fi-clipboard-notes:hover,
+.stories i.fi-alert:hover {
+	cursor: pointer;
+}

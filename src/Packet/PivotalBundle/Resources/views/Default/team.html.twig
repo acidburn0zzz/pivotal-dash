@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<a href="/">(view projects)</a>
+<div id="team">
+<ul class="tabs" id="navTabs" data-tab>
+	<li class="tab-title active"><a id="overview" href="#overview">Team Overview</a></li>
+{% for user in users %}
+	<li class="tab-title"><a id="{{ user.initials }}" href="#panel{{ user.initials }}">{{ user.name }}</a></li>
+{% endfor %}
+</ul>
+
+<div class="tabs-content">
+	<div class="user content active" id="tabContent">
+		<ul id="users">
+		{% for user in users %}
+			<li><a href="?user={{ user.initials }}">{{ user.name }} ({{ user.initials }})</a> <span class="points">points: {{ user.points|default('0') }}, tasks: {{ user.tasks|default('0') }}</span></li>
+		{% endfor %}
+		</ul>
+	</div>
+</div>
+
+</div><!-- end #team -->
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<script>
+	$(function() {
+		$('#navTabs a').click(function (event, data) {
+			$('#tabContent').html('<img src="/assets/img/throbber.gif" />');
+			$('#tabContent').load('/user/' + this.id);
+		});
+	});
+</script>
+{% endblock %}

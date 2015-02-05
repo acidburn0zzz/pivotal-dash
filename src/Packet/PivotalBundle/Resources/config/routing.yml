@@ -1,0 +1,3 @@
+packet_pivotal_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: PacketPivotalBundle:Default:index }

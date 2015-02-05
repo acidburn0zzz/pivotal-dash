@@ -1,0 +1,4 @@
+packet_pivotal:
+    resource: "@PacketPivotalBundle/Controller/"
+    type:     annotation
+    prefix:   /

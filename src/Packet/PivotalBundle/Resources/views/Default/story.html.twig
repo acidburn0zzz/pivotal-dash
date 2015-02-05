@@ -1,0 +1,60 @@
+<tr class="story {{ story.story_type }}">
+<td>
+<a href="https://www.pivotaltracker.com/story/show/{{ story.id }}" target="_blank">{{ story.id }}</a></td>
+<td nowrap>
+{% spaceless %}
+{% if story.story_type == 'chore' %}
+	<i class="fi-widget"></i>
+{% elseif story.story_type == 'feature' %}
+	<i class="fi-star"></i>
+{% elseif story.story_type == 'bug' %}
+	<i class="fi-skull"></i>
+{% elseif story.story_type == 'release' %}
+	<i class="fi-flag"></i>
+{% endif %}
+{{ story.story_type }}
+{% if story.story_type == 'feature' %}
+	{% if story.estimate is defined %}
+		({{ story.estimate }})
+	{% else %}
+		(<i class="fi-alert" title="not estimated"></i>)
+	{% endif %}
+{% endif %}
+{% endspaceless %}
+</td>
+<td nowrap>
+{% spaceless %}
+{% if story.current_state == 'unscheduled' %}
+	<i class="fi-trees"></i>
+{% elseif story.current_state == 'unstarted' %}
+	<i class="fi-battery-empty"></i>
+{% elseif story.current_state == 'started' %}
+	<i class="fi-battery-half"></i>
+{% elseif story.current_state == 'finished' %}
+	<i class="fi-battery-full"></i>
+{% elseif story.current_state == 'delivered' %}
+	<i class="fi-trophy"></i>
+{% elseif story.current_state == 'accepted' %}
+	<i class="fi-crown"></i>
+{% endif %}
+{{ story.current_state }}
+{% endspaceless %}
+</td>
+<td nowrap>{{ story.requester }}</td>
+{% if showowner is defined %}
+<td nowrap>{{ story.owner }}</td>
+{% endif %}
+<td>{{ story.additional_owners|join(',') }}</td>
+<td>{{ story.name }}&nbsp;{% if story.description is defined %}<i class="fi-clipboard-notes has-tip" data-tooltip title="{{ story.description }}"></i>{% endif %}</td>
+<td>
+{% spaceless %}
+{% for label in story.labels %}
+{% if loop.last %}
+{{ label.name }}
+{% else %}
+{{ label.name }}, 
+{% endif %}
+{% endfor %}
+{% endspaceless %}
+</td>
+</tr>
