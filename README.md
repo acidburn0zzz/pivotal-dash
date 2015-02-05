@@ -16,7 +16,9 @@ Once you download the code, you'll need to install composer, and do a composer u
 
 
 pivotal.endpoint: https://www.pivotaltracker.com/services/v5
+
 pivotal.token: YOURPIVOTALAPITOKEN
+
 pivotal.account: YOURPIVOTALACCOUNTID
 
 ## Contributors
