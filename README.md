@@ -15,11 +15,9 @@ If you use Pivotal Tracker with multiple projects, it can be hard to get a good 
 Once you download the code, you'll need to install composer, and do a composer update to install the required packages. You will also need to add the following parameters to your parameters.yml file:
 
 
-pivotal.endpoint: https://www.pivotaltracker.com/services/v5
-
-pivotal.token: YOURPIVOTALAPITOKEN
-
-pivotal.account: YOURPIVOTALACCOUNTID
+    pivotal.endpoint: https://www.pivotaltracker.com/services/v5
+    pivotal.token: YOURPIVOTALAPITOKEN
+    pivotal.account: YOURPIVOTALACCOUNTID
 
 ## Contributors
 
