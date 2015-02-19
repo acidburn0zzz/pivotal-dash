@@ -36,7 +36,7 @@ class Pivotal extends Guzzle {
 		$projects = array();
 
 		$memcache = new \Memcache;
-		if($memcache->connect('localhost', 11211)) {
+		if($memcache->connect('memcached', 11211)) {
 			if(!$projects = json_decode($memcache->get($this->account .'projects'))) {
 				$memcache->delete($this->account .'projects');
 				$projects = array();
@@ -84,7 +84,7 @@ class Pivotal extends Guzzle {
 		$accounts = array();
 
 		$memcache = new \Memcache;
-		if($memcache->connect('localhost', 11211)) {
+		if($memcache->connect('memcached', 11211)) {
 			if(!$accounts = json_decode($memcache->get($this->account .'_accounts'))) {
 				$memcache->delete($this->account .'_accounts');
 				$accounts = array();
@@ -104,7 +104,7 @@ class Pivotal extends Guzzle {
 	}
 
 	public static function purge() {
-		if($memcache->connect('localhost', 11211)) {
+		if($memcache->connect('memcached', 11211)) {
 			$memcache->delete($this->account .'_accounts');
 			$memcache->delete($this->account .'_projects');
 		}
