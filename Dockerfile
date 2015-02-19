@@ -32,7 +32,7 @@ WORKDIR $DOCROOT
 RUN \
   curl -sS https://getcomposer.org/installer | php && \
   mv composer.phar /usr/local/bin/composer && \
-  su -c "composer update -d $DOCROOT" packet && \
+  su -c "composer update -d $DOCROOT" packet
 
 CMD ["nginx"]
 
