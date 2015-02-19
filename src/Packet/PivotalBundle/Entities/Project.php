@@ -49,6 +49,26 @@ class Project {
 		return $points;
 	}
 
+  public function getPointsDelivered() {
+		$points = 0;
+		foreach($this->iteration->stories as $story) {
+			if($story->story_type == 'feature' && isset($story->estimate) && ($story->current_state == 'accepted' || $story->current_state == 'delivered')) {
+				$points += $story->estimate;
+			}
+		}
+		return $points;
+	}
+
+  public function getStoriesDelivered() {
+		$points = 0;
+		foreach($this->iteration->stories as $story) {
+			if(($story->story_type == 'feature' || $story->story_type == 'chore' || $story->story_type == 'bug') && ($story->current_state == 'accepted' || $story->current_state == 'delivered')) {
+				$points++;
+			}
+		}
+		return $points;
+	}
+
 	public function setIteration($iteration)
 	{
 		$this->iteration = $iteration;
@@ -106,7 +126,12 @@ class Project {
 						}
 					}
 					else {
-						$story->additional_owners[$id] = $accounts->$id->name;
+						if(isset($accounts->$id)) {
+							$story->additional_owners[$id] = $accounts->$id->name;
+						}
+						else {
+							$story->additional_owners[$id] = '(???)';
+						}
 					}
 				}
 
